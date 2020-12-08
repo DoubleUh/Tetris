@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Tetris
 {
-    class Stick
+    class Stick : Figure
     {
-        Point[] points = new Point[4];
 
         public Stick(int x, int y, char c)
         {
@@ -16,12 +15,6 @@ namespace Tetris
             points[3] = new Point(x, y + 3, c);
         }
 
-        public void Draw()
-        {
-            foreach (Point p in points)
-            {
-                p.Draw();
-            }
-        }
+
     }
 }
