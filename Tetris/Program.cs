@@ -11,76 +11,32 @@ namespace Tetris
             Console.SetBufferSize(40, 30);
 
             FigureGenerator generator = new FigureGenerator(20, 0, '*');
-            Figure s = generator.GetNewFigure();
+            Figure s = null;
             
-            s.Draw();
+            while(true)
+            {
+                FigureFall(s, generator);
 
-            Thread.Sleep(500);
-            s.Hide();
-            s.Rotate();
-            s.Draw();
-            
-            Thread.Sleep(500);
-            s.Hide();
-            s.Move(Direction.LEFT);
-            s.Draw();
-
-            Thread.Sleep(500);
-            s.Hide();
-            s.Move(Direction.DOWN);
-            s.Draw();
-
-            Thread.Sleep(500);
-            s.Hide();
-            s.Move(Direction.DOWN);
-            s.Draw();
-
-            Thread.Sleep(500);
-            s.Hide();
-            s.Move(Direction.RIGHT);
-            s.Draw();
-
-            Thread.Sleep(500);
-            s.Hide();
-            s.Rotate();
-            s.Draw();
-
-            Thread.Sleep(500);
-            s.Hide();
-            s.Move(Direction.RIGHT);
-            s.Draw();
-
-            //Figure[] f = new Figure[2];
-            //f[0] = new Square(2, 5, '*');
-            //f[1] = new Stick(6, 6, '*');
-
-            //foreach (Figure fig in f)
-            //{
-            //    fig.Draw();
-            //}
-
-            //Square s = new Square(2, 5, '*');
-            //s.Draw();
+                s.Draw();
+            }
 
 
-            //Stick stick = new Stick(6, 6, '*');
-            //stick.Draw();
+            //Console.ReadLine();
+        }
 
-            //Point p1 = new Point(2, 3, '*');
+        static void FigureFall(Figure fig, FigureGenerator generator)
+        {
+            fig = generator.GetNewFigure();
+            fig.Draw();
 
+            for (int i = 0; i < 15; i++)
+            {
+                Thread.Sleep(200);
+                fig.Hide();
+                fig.Move(Direction.DOWN);
+                fig.Draw();
 
-            //Point p2 = new Point()
-            //{
-            //    x = 4,
-            //    y = 5,
-            //    c = '*'
-            //};
-
-
-            //p2.Draw();
-
-
-            Console.ReadLine();
+            }
         }
 
     }
