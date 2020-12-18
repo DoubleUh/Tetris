@@ -22,7 +22,19 @@ namespace Tetris
             Hide();
             var clone = Clone();
             Move(clone, dir);
-            if(VerifyPosition(clone))
+            if (VerifyPosition(clone))
+            {
+                points = clone;
+            }
+            Draw();
+        }
+
+        internal void TryRotate()
+        {
+            Hide();
+            var clone = Clone();
+            Rotate(clone);
+            if (VerifyPosition(clone))
             {
                 points = clone;
             }
@@ -31,9 +43,9 @@ namespace Tetris
 
         private bool VerifyPosition(Point[] pList)
         {
-            foreach(var p in pList)
+            foreach (var p in pList)
             {
-                if(p.x<0||p.y<0||p.x>=40||p.y>=30)
+                if (p.x < 0 || p.y < 0 || p.x >= Field.WIDTH || p.y >= Field.HEIGHT)
                 {
                     return false;
                 }
@@ -43,7 +55,7 @@ namespace Tetris
 
         private void Move(Point[] clone, Direction dir)
         {
-            foreach(var p in clone)
+            foreach (var p in clone)
             {
                 p.Move(dir);
             }
@@ -60,8 +72,8 @@ namespace Tetris
         }
 
 
-        public abstract void Rotate();
-        
+        public abstract void Rotate(Point[] pList);
+
 
         public void Hide()
         {
