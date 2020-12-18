@@ -6,22 +6,22 @@ namespace Tetris
 {
     public class Point
     {
-        public int x;
-        public int y;
-        public char c;
+        public int X { get; set; }
+        public int Y { get; set; }
+        public char C { get; set; }
 
         public void Draw()
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(c);
+            Console.SetCursorPosition(X, Y);
+            Console.Write(C);
             Console.SetCursorPosition(0, 0);
         }
 
         public Point(int x, int y, char c)
         {
-            this.x = x;
-            this.y = y;
-            this.c = c;
+            this.X = x;
+            this.Y = y;
+            this.C = c;
 
 
         }
@@ -31,20 +31,20 @@ namespace Tetris
             switch (dir)
             {
                 case Direction.DOWN:
-                    y += 1;
+                    Y += 1;
                     break;
                 case Direction.LEFT:
-                    x -= 1;
+                    X -= 1;
                     break;
                 case Direction.RIGHT:
-                    x += 1;
+                    X += 1;
                     break;
             }
         }
 
         internal void Hide()
         {
-            Console.SetCursorPosition(x, y);
+            Console.SetCursorPosition(X, Y);
             Console.Write(' ');
         }
 
@@ -54,9 +54,9 @@ namespace Tetris
 
         public Point(Point point)
         {
-            x = point.x;
-            y = point.y;
-            c = point.c;
+            X = point.X;
+            Y = point.Y;
+            C = point.C;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Tetris
         {
             foreach (var p in pList)
             {
-                if (p.x < 0 || p.y < 0 || p.x >= Field.WIDTH || p.y >= Field.HEIGHT)
+                if (p.X < 0 || p.Y < 0 || p.X >= Field.Width || p.Y >= Field.HEIGHT)
                 {
                     return false;
                 }
@@ -53,9 +53,9 @@ namespace Tetris
             return true;
         }
 
-        private void Move(Point[] clone, Direction dir)
+        private void Move(Point[] pList, Direction dir)
         {
-            foreach (var p in clone)
+            foreach (var p in pList)
             {
                 p.Move(dir);
             }
