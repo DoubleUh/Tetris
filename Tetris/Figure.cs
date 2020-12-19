@@ -17,40 +17,56 @@ namespace Tetris
             }
         }
 
-        internal void TryMove(Direction dir)
+        internal Result TryMove(Direction dir)
         {
             Hide();
             var clone = Clone();
             Move(clone, dir);
-            if (VerifyPosition(clone))
+
+            var result = VerifyPosition(clone);
+            if (result == Result.SUCCESS)
             {
                 Points = clone;
             }
             Draw();
+
+            return result;
         }
 
-        internal void TryRotate()
+        internal Result TryRotate()
         {
             Hide();
             var clone = Clone();
             Rotate(clone);
-            if (VerifyPosition(clone))
+
+            var result = VerifyPosition(clone);
+            if (result == Result.SUCCESS)               
             {
                 Points = clone;
             }
             Draw();
+
+            return result;
         }
 
-        private bool VerifyPosition(Point[] pList)
+        private Result VerifyPosition(Point[] newPoints)
         {
-            foreach (var p in pList)
+            foreach (var p in newPoints)
             {
-                if (p.X < 0 || p.Y < 0 || p.X >= Field.Width || p.Y >= Field.Height)
+                if (p.Y >= Field.Height)
                 {
-                    return false;
+                    return Result.DOWN_BORDER_STRIKE;
+                }
+                if (p.X >= Field.Width || p.X < 0 || p.Y < 0)
+                {
+                    return Result.BORDER_STRIKE;
+                }
+                if (Field.CheckStrike(p))
+                {
+                    return Result.HEAP_STRIKE;
                 }
             }
-            return true;
+            return Result.SUCCESS;
         }
 
         private void Move(Point[] pList, Direction dir)
