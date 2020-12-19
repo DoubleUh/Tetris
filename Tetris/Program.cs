@@ -7,8 +7,8 @@ namespace Tetris
     {
         static void Main(string[] args)
         {
-            Console.SetWindowSize(Field.Width, Field.HEIGHT);
-            Console.SetBufferSize(Field.Width, Field.HEIGHT);
+            Console.SetWindowSize(Field.Width, Field.Height);
+            Console.SetBufferSize(Field.Width, Field.Height);
 
             Field.Width = 20;
 
